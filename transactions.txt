@@ -1,0 +1,6 @@
+13monica 13 10 2005 noutati 1200.00 deposit
+13monica 13 12 2010 mariela 10000.00 deposit
+matei1 13 12 2004 testare 125.50 withdraw
+matei1 5 4 2003 plati 120.00 withdraw
+matei1 13 1 2004 plata 152.50 deposit
+5andrei 13 12 2010 noutate 125.00 deposit
