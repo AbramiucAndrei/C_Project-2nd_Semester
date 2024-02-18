@@ -156,6 +156,7 @@ int citeste_comanda(char msg[]){
 
 }
 void citeste_cuvant(char *user[],char msg[]){
+    //citeste un cuvant valid de la tastatura si il salveaza in user
     char console_user[50];
     bool valid;
     do{
@@ -169,6 +170,7 @@ void citeste_cuvant(char *user[],char msg[]){
             for(int i=0;console_user[i]!='\0';i++)
                 if(console_user[i]==' ')
                     valid=false;
+            //daca gaseste un spatiu,inseamna ca nu e cuvant
         }
     }while(!valid);
     strcpy(user,console_user);
@@ -176,6 +178,7 @@ void citeste_cuvant(char *user[],char msg[]){
 
 bool exista_contul(char searched_user[],char accounts[],utilizator *found_user)
 {
+    //se incearca deschiderea fisierului cu numele transmis prin "accounts", cu modul "read"
     FILE *f= fopen(accounts,"r");
     if(f==NULL){
         perror("Fisierul nu a fost deschis cu succes");
@@ -185,6 +188,7 @@ bool exista_contul(char searched_user[],char accounts[],utilizator *found_user)
     while(fgets(line,99,f)){
         char username[50],parola[50],tipul[20];
 
+        //citesc linie cu linie din fisier
         char *p=strtok(line," \n");
         strcpy(username,p);
         p=strtok(NULL," \n");
@@ -194,7 +198,7 @@ bool exista_contul(char searched_user[],char accounts[],utilizator *found_user)
 
         //username found
         if (strcmp(searched_user,username)==0){
-            //
+            
 
             strcpy((*found_user).user,username);
             strcpy((*found_user).parola,parola);
@@ -222,6 +226,7 @@ struct conturi* import_transactions(struct conturi *start,char transactions[]){
         float suma;
         _date data;
 
+        //citesc linie cu linie din fisierul cu tranzactii
         char *p=strtok(line," \n");
         strcpy(username,p);
         p=strtok(NULL," \n");
@@ -239,6 +244,7 @@ struct conturi* import_transactions(struct conturi *start,char transactions[]){
 
         struct nodTrans *curr=(struct nodTrans*)malloc(sizeof(struct nodTrans));
 
+        //se salveaza fiecare tranzactie in lista alocata dinamic
         strcpy(curr->user,username);
         curr->trans=create_trans(data.day,data.month,data.year,descriere,suma,tip);
         curr->next=start;
